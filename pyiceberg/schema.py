@@ -1586,6 +1586,8 @@ def _(file_type: FloatType, read_type: IcebergType) -> IcebergType:
 def _(file_type: StringType, read_type: IcebergType) -> IcebergType:
     if isinstance(read_type, BinaryType):
         return read_type
+    elif isinstance(read_type, DecimalType):
+        return read_type
     else:
         raise ResolveError(f"Cannot promote an string to {read_type}")
 
