@@ -1695,7 +1695,7 @@ class _SchemaCompatibilityVisitor(PreOrderSchemaVisitor[bool]):
     def schema(self, schema: Schema, struct_result: Callable[[], bool]) -> bool:
         if not (result := struct_result()):
             if any([isinstance(field.field_type, (ListType, MapType, StructType)) for field in schema.fields]):
-                self.console.print(f"ignoring mismatch since this schema includes struct, which cannot be validated correctly: https://github.com/apache/arrow/pull/43782")
+                # self.console.print(f"ignoring mismatch since this schema includes struct, which cannot be validated correctly: https://github.com/apache/arrow/pull/43782")
                 return True
             self.console.print(self.rich_table)
             raise ValueError(f"Mismatch in fields:\n{self.console.export_text()}")
